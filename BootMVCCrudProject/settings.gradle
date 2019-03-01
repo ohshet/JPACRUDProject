@@ -1,0 +1,8 @@
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'BootMVCCrudProject'
+
+includeFlat 'JPACrudProject'
