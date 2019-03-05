@@ -35,6 +35,14 @@ public class RedMeat {
 	public RedMeat() {
 		
 	}
+	
+	public RedMeat(int id, String title, String characters, String text, String url) {
+		this.id = id;
+		this.title = title;
+		this.characters = characters;
+		this.text = text;
+		this.imgUrl = url;
+	}
 
 	public int getId() {
 		return id;

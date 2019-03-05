@@ -15,7 +15,7 @@ import com.skilldistillery.jpacruddata.entities.RedMeat;
 //@Service
 public class RedMeatDAOImpl implements RedMeatDAO {
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("redmeat");
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -29,55 +29,48 @@ public class RedMeatDAOImpl implements RedMeatDAO {
 		em.close();
 		return redmeat;
 	}
-	
+
 	@Override
-	public List<RedMeat> searchId (int id) {
+	public List<RedMeat> searchId(int id) {
 		em = emf.createEntityManager();
-		String sql = "select rm from RedMeat rm where id = :sid"; 
+		String sql = "select rm from RedMeat rm where id = :sid";
 		List<RedMeat> meatList = null;
-		meatList = null;
-		meatList = em.createQuery(sql,RedMeat.class)
-				.setParameter("sid",id)
-				.getResultList();	
+
+		meatList = em.createQuery(sql, RedMeat.class).setParameter("sid", id).getResultList();
+
 		return meatList;
 	}
-	
+
 	@Override
-	public List<RedMeat> searchTitle (String searchString) {
+	public List<RedMeat> searchTitle(String searchString) {
 		em = emf.createEntityManager();
-		searchString = "%"+searchString+"%";
+		searchString = "%" + searchString + "%";
 		String sql = "select rm from RedMeat rm where rm.title like :string";
 		List<RedMeat> meatList = null;
-		meatList = em.createQuery(sql,RedMeat.class)
-				.setParameter("string", searchString)
-				.getResultList();		
+		meatList = em.createQuery(sql, RedMeat.class).setParameter("string", searchString).getResultList();
 		return meatList;
 	}
-	
+
 	@Override
-	public List<RedMeat> searchCharacter (String searchString) {
+	public List<RedMeat> searchCharacter(String searchString) {
 		em = emf.createEntityManager();
-		searchString = "%"+searchString+"%";
+		searchString = "%" + searchString + "%";
 		String sql = "select rm from RedMeat rm where rm.characters like :string";
 		List<RedMeat> meatList = null;
-		meatList = em.createQuery(sql,RedMeat.class)
-				.setParameter("string", searchString)
-				.getResultList();		
+		meatList = em.createQuery(sql, RedMeat.class).setParameter("string", searchString).getResultList();
 		return meatList;
 	}
-	
+
 	@Override
-	public List<RedMeat> searchText (String searchString) {
+	public List<RedMeat> searchText(String searchString) {
 		em = emf.createEntityManager();
-		searchString = "%"+searchString+"%";
-		String sql = "select rm from RedMeat rm where rm.text like :string";  
+		searchString = "%" + searchString + "%";
+		String sql = "select rm from RedMeat rm where rm.text like :string";
 		List<RedMeat> meatList = null;
-		meatList = em.createQuery(sql,RedMeat.class)
-				.setParameter("string", searchString)
-				.getResultList();		
+		meatList = em.createQuery(sql, RedMeat.class).setParameter("string", searchString).getResultList();
 		return meatList;
 	}
-	
+
 	@Override
 	public RedMeat update(int id, RedMeat updatedRedMeat) {
 		em = emf.createEntityManager();
@@ -103,7 +96,7 @@ public class RedMeatDAOImpl implements RedMeatDAO {
 		boolean result = false;
 		if (redmeat == null) {
 			result = true;
-		} 
+		}
 		em.close();
 		return result;
 	}

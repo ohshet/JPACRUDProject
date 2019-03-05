@@ -21,49 +21,56 @@
 				<h4>Search by:</h4>
 				<form action="search.do" method="GET">
 					<select id="searchby" name="searchby">
-						<option value="ID">ID</option>
 						<option value="Title">Title</option>
 						<option value="Character">Character</option>
 						<option value="Text">Text</option>
-					</select> <input type="text" name="searchstring" style='width: 85%' /> <input
-						type="submit" value="Go" />
+						<option value="ID">ID</option>
+					</select> <br> <br> <input type="text" name="searchstring"
+						style='width: 85%' /> <input type="submit" value="Go" />
 				</form>
+				<c:if test="${not empty searchstatus}">
+					<div>${searchstatus}</div>
+				</c:if>
 			</div>
 			<div class="col">
 				<h3>Search Results</h3>
-				<form action="geturl.do" method="GET">>
-				<select id="searchresults" name="searchresults" size="4" style='width: 90%'>
-					<c:if test="${not empty meatlist}">
-									<c:forEach var="redmeat" items="${meatlist}">
+				<form action="geturl.do" method="GET">
+					<select id="searchresults" name="searchresults" size="8"
+						style='width: 90%'>
+						<c:if test="${not empty meatlist}">
+							<c:forEach var="redmeat" items="${meatlist}">
 								<option>${redmeat.title}</option>
 							</c:forEach>
-					</c:if>
-				</select>
-				<input type="submit" value="Show" />
+						</c:if>
+					</select> <input type="submit" value="Show" />
 				</form>
 			</div>
 			<div class="col">
 				<h3>Add/Delete/Modify</h3>
-				<form>
-					<input type="submit" value="Add fresh meat" />
+				<form action="crud.do" method="POST">
+					Title: <br> <input type="title" name="title" value="${title}"
+						style='width: 95%' /><br> Characters: <br> <input
+						type="characters" name="characters" value="${characters}"
+						style='width: 95%' /><br> Text: <br> <input type="text"
+						name="text" value="${text}" style='width: 95%' /> <br> URL:<input
+						type="imgurl" name="imgurl" value="${imgurl}" style='width: 95%' />
+					<input type="hidden" name="id" value="${id}" /> <br> <select
+						id="crud" name="crud">
+						<option value=modify>Modify This Record</option>
+						<option value=delete>Delete This Record</option>
+						<option value=add>Add Fresh Meat!</option>
+					</select> <input type="submit" value="Go" />
 				</form>
-
-				<form>
-					<input type="submit" value="Modify this comic" />
-				</form>
-
-				<form>
-					<input type="submit" value="Delete this comic" />
-				</form>
+				<c:if test="${not empty status}">
+					<div>${status}</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
 	<div class="container">
-	<c:if test="${not empty imgurl}">
-		<img
-			src="${imgurl}"
-			alt="Red Meat" width="90%" class="center">
-			</c:if>
+		<c:if test="${not empty imgurl}">
+			<img src="${imgurl}" alt="Red Meat" width="90%" class="center">
+		</c:if>
 	</div>
 
 
