@@ -54,6 +54,7 @@ public class ProjectController {
 		RedMeatDAO dao = new RedMeatDAOImpl();
 		ModelAndView mv = new ModelAndView();
 		List<RedMeat> meatList = null;
+		if(searchresults != null) {
 		meatList = dao.searchTitle(searchresults);
 		System.err.print(searchresults);
 		int id = meatList.get(0).getId();
@@ -66,6 +67,7 @@ public class ProjectController {
 		mv.addObject("characters", characters);
 		mv.addObject("text", text);
 		mv.addObject("imgurl", imgUrl);
+		}
 		mv.setViewName("WEB-INF/index.jsp");
 		return mv;
 
